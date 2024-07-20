@@ -39,7 +39,7 @@ if (index < 0 || index >= buckets.length) {
 
       Also, there is one edge case with long keys that was not taken into consideration in the function or rather how we applied a modulo `%` operator. JavaScript is unable to hold large numbers precisely. At some point, calculations are going to be inaccurate, which significantly increases the chances of collisions. There are a few ways how we could handle it but we recommend that you apply the modulo operator on *each iteration* instead of outside the loop at the end. In that case, we prevent the output from becoming larger than our bucket's length.
 
-      You might find yourself confusing keys with hash codes while accessing key-value pairs later. We would like to stress that the key is what your `hash` function will take as an input. In a way, we could say that the key is important for us only inside the `hash` function. But we never access a bucket directly with the key. Instead we do so with the hash code.
+      You might find yourself confusing keys with hash codes while accessing key-value pairs later. We would like to stress that the key is what your `hash` function will take as an input. In a way, we could say that the key is important for us only inside the `hash` function. But we never access a bucket directly with the key. Instead we do so with the hash code. 
 
       <div class="lesson-note lesson-note--tip" markdown="1">
 
@@ -51,7 +51,7 @@ if (index < 0 || index >= buckets.length) {
 
       In the meantime, a collision is when *TWO DIFFERENT* keys sit inside the same bucket, because they generate the same hash code (e.g. `Carlos` and `Carla` are both hashed to `3`, so `3` becomes a location for `Carlos` AND `Carla`. However, we know that it is the collision. It means we should find a way how to resolve it — how to *deal with collisions*, which was mentioned in the previous lesson).
 
-      - Remember to grow your buckets size when it needs to, by calculating if your bucket has reached the `load factor`. Some of the methods in this assignment that are mentioned later could be reused to help you handle that growth logic more easily. So you may want to hold onto implementing your growing functionality just for now. However, the reason why we mention it with `set()` is because it's important to grow buckets exactly when they are being expanded.
+      - Remember to grow your buckets size when it needs to, by calculating if your bucket has reached the `load factor`. Some of the methods in this assignment that are mentioned later could be reused to help you handle that growth logic more easily. So you may want to hold onto implementing your growing functionality just for now. However, the reason why we mention it with `set()` is because it's important to grow buckets exactly when they are being expanded. THE KEYS NEEDS TO BE REDISTRUBATED WHEN THE BUCKET SIZED IS INCREASED. THIS CAN BE DONE BY STORING THE CURRENT HASH MAP IN AN ARRAY AND THEN REDISTRUBATE THE KEYS WITH NEW HASHES. 
 
   1. `get(key)` takes one argument as a key and returns the value that is assigned to this key. If a key is not found, return `null`.
 
